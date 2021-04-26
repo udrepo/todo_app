@@ -1,24 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_app/models/task.dart';
+import 'package:todo_app/models/task_data.dart';
 import 'package:todo_app/screens/add_task_screen.dart';
 import 'package:todo_app/widgets/tasks_list.dart';
 
-class TasksScreen extends StatefulWidget {
-
-  @override
-  _TasksScreenState createState() => _TasksScreenState();
-}
-
-class _TasksScreenState extends State<TasksScreen> {
-  List<Task> tasks = [
-    Task(name: 'do it', isDone: false),
-    Task(name: 'do it2', isDone: false),
-    Task(name: 'do it3', isDone: false),
-  ];
+class TasksScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var providedTasks = Provider.of<TaskData>(context).tasks;
+
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent,
       body: Column(
@@ -44,7 +37,7 @@ class _TasksScreenState extends State<TasksScreen> {
                   color: Colors.white,
                   fontWeight: FontWeight.w500
                 ),),
-                Text('You have a ${tasks.length} tasks', style: TextStyle(
+                Text('You have a ${providedTasks.length} tasks', style: TextStyle(
                   color: Colors.white,
                   fontSize: 22
                 ),),
@@ -58,7 +51,7 @@ class _TasksScreenState extends State<TasksScreen> {
                   color: Colors.white,
                   borderRadius: BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20))
               ),
-              child: TasksList(tasks),
+              child: TasksList(),
             ),
           )
         ],
@@ -70,14 +63,7 @@ class _TasksScreenState extends State<TasksScreen> {
           showModalBottomSheet(
             isScrollControlled: true,
             context: context,
-            builder: (context) => AddTaskScreen((newTaskText){
-              setState(() {
-                tasks.add(Task(
-                  name: newTaskText
-                ));
-              });
-              Navigator.pop(context);
-            }),
+            builder: (context) => AddTaskScreen(),
           );
         },
       ),

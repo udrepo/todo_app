@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todo_app/models/task.dart';
+import 'package:todo_app/models/task_data.dart';
 
 class AddTaskScreen extends StatelessWidget {
-final Function addTaskCallback;
-
-AddTaskScreen(this.addTaskCallback);
-
   @override
   Widget build(BuildContext context) {
     String text;
@@ -14,32 +13,33 @@ AddTaskScreen(this.addTaskCallback);
       child: Container(
         padding: EdgeInsets.all(20),
         decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(20),
-            topRight: Radius.circular(20)
-          )
-        ),
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20), topRight: Radius.circular(20))),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text('Add Task', style: TextStyle(
-              fontSize: 25,
-              color: Colors.lightBlueAccent
+            Text(
+              'Add Task',
+              style: TextStyle(fontSize: 25, color: Colors.lightBlueAccent),
+              textAlign: TextAlign.center,
             ),
-            textAlign: TextAlign.center,),
             TextField(
               autofocus: true,
-              onChanged: (newText){
+              onChanged: (newText) {
                 text = newText;
               },
             ),
-            FlatButton(onPressed: (){
-             addTaskCallback(text);
-                }, color: Colors.lightBlueAccent, child: Text('Add',
-            style: TextStyle(
-              color: Colors.white
-            ),))
+            FlatButton(
+                onPressed: () {
+                  Provider.of<TaskData>(context, listen: false).addTask(text);
+                  Navigator.pop(context);
+                },
+                color: Colors.lightBlueAccent,
+                child: Text(
+                  'Add',
+                  style: TextStyle(color: Colors.white),
+                ))
           ],
         ),
       ),
