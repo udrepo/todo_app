@@ -1,10 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:todo_app/models/task.dart';
 import 'package:todo_app/screens/add_task_screen.dart';
 import 'package:todo_app/widgets/tasks_list.dart';
 
-class TasksScreen extends StatelessWidget {
+class TasksScreen extends StatefulWidget {
 
+  @override
+  _TasksScreenState createState() => _TasksScreenState();
+}
+
+class _TasksScreenState extends State<TasksScreen> {
+  List<Task> tasks = [
+    Task(name: 'do it', isDone: false),
+    Task(name: 'do it2', isDone: false),
+    Task(name: 'do it3', isDone: false),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +44,7 @@ class TasksScreen extends StatelessWidget {
                   color: Colors.white,
                   fontWeight: FontWeight.w500
                 ),),
-                Text('13 tasks', style: TextStyle(
+                Text('You have a ${tasks.length} tasks', style: TextStyle(
                   color: Colors.white,
                   fontSize: 22
                 ),),
@@ -47,7 +58,7 @@ class TasksScreen extends StatelessWidget {
                   color: Colors.white,
                   borderRadius: BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20))
               ),
-              child: TasksList(),
+              child: TasksList(tasks),
             ),
           )
         ],
@@ -59,7 +70,14 @@ class TasksScreen extends StatelessWidget {
           showModalBottomSheet(
             isScrollControlled: true,
             context: context,
-            builder: (context) => AddTaskScreen(),
+            builder: (context) => AddTaskScreen((newTaskText){
+              setState(() {
+                tasks.add(Task(
+                  name: newTaskText
+                ));
+              });
+              Navigator.pop(context);
+            }),
           );
         },
       ),
