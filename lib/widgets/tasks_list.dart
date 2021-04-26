@@ -17,8 +17,10 @@ class TasksList extends StatelessWidget {
                     taskTitle: taskData.tasks[index].name,
                     isChecked: taskData.tasks[index].isDone,
                     cbCallback: (cbState) {
-                      taskData.tasks[index].toggleDone();
-                    },
+                      taskData.updateTask(taskData.tasks[index]);
+                    },longPressCallback: (){
+                   taskData.deleteTask(taskData.tasks[index]);
+                 },
                   ),
               itemCount: taskData.tasks.length,
             );}
