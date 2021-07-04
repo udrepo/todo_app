@@ -6,6 +6,15 @@ class TaskData extends ChangeNotifier{
     Task(name: 'do it', isDone: false),
     Task(name: 'do it2', isDone: false),
     Task(name: 'do it3', isDone: false),
+    Task(name: 'do it', isDone: false),
+    Task(name: 'do it2', isDone: false),
+    Task(name: 'do it3', isDone: false),
+    Task(name: 'do it', isDone: false),
+    Task(name: 'do it2', isDone: false),
+    Task(name: 'do it3', isDone: false),
+    Task(name: 'do it', isDone: false),
+    Task(name: 'do it2', isDone: false),
+    Task(name: 'do it3', isDone: false),
   ];
 
 
