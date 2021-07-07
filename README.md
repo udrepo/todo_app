@@ -1,3 +1,8 @@
 A Todo app written in Flutter
 
-![Alt text](/assets/1.png "Optional Title")
+Functions: 
+- adding 
+- toggling
+
+![Alt text](/assets/1.png "screen1")
+![Alt text](/assets/1.png "screen2")
