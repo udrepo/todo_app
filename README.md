@@ -1,8 +1,6 @@
 A Todo app written in Flutter
 
-Functions: 
-- adding 
-- toggling
+Simple Todo application for controlling todo list
 
 
 ![Alt text](/assets/1.png "screen1")
