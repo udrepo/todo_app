@@ -6,6 +6,6 @@ Functions:
 
 
 
-<img src="/assets/1.png" width="720" height="1280">
-<img src="/assets/2.png" width="720" height="1280">
+<img src="/assets/1.png" width="291" height="163">
+<img src="/assets/2.png" width="291" height="163">
 
